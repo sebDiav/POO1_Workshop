@@ -42,7 +42,8 @@ public class Workshop {
      int resultado=1;
       int i=1;
      while(i<=n){
-     resultado=resultado*i
+     resultado=resultado*i;
+     i++;
      }
         return resultado;
     }
@@ -129,38 +130,72 @@ public class Workshop {
 
     // Método que busca un elemento en un arreglo
     public boolean buscarElemento(int[] arreglo, int elemento) {
-        // TODO: Implementar el método para buscar un elemento en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y elemento = 3, el resultado debería ser true.
+       for ( int i=0; i<arreglo.length; i++){
+       if (arreglo[i] == elemento){
+        return true;   
+    }
+    }
+   
         return false;
     }
+    
 
     // Método que invierte un arreglo
     public int[] invertirArreglo(int[] arreglo) {
-        // TODO: Implementar el método para invertir un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser [5, 4, 3, 2, 1].
-        return new int[0];
+        int [] invertir = new int[arreglo.length];
+        for ( int i=0; i<arreglo.length; i++){
+        invertir[i] = arreglo[arreglo.length - 1 - i];
+    }
+      return invertir;
     }
 
     // Método que ordena un arreglo en orden ascendente
     public int[] ordenarArreglo(int[] arreglo) {
-        // TODO: Implementar el método para ordenar un arreglo en orden ascendente.
-        // Ejemplo: Si arreglo = [5, 4, 3, 2, 1], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+        for (int i = 0; i < arreglo.length - 1; i++) {
+        for (int j = 0; j < arreglo.length - 1 - i; j++) {
+
+            if (arreglo[j] > arreglo[j + 1]) {
+
+                int temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+            }
+        }
     }
+
+    return arreglo;
+}
 
     // Método que elimina los duplicados de un arreglo
     public int[] eliminarDuplicados(int[] arreglo) {
-        // TODO: Implementar el método para eliminar los duplicados de un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 2, 3, 4, 4, 5], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+       
+    int[] auxiliar = new int[arreglo.length];
+    int contador = 0;
+
+    for (int i = 0; i < arreglo.length; i++) {
+
+        boolean repetido = false;
+
+        for (int j = 0; j < contador; j++) {
+            if (arreglo[i] == auxiliar[j]) {
+                repetido = true;
+                break;
+            }
+        }
+
+        if (!repetido) {
+            auxiliar[contador] = arreglo[i];
+            contador++;
+        }
     }
 
-    // Método que combina dos arreglos en uno solo
-    public int[] combinarArreglos(int[] arreglo1, int[] arreglo2) {
-        // TODO: Implementar el método para combinar dos arreglos en uno solo.
-        // Ejemplo: Si arreglo1 = [1, 2, 3, 4, 5] y arreglo2 = [6, 7, 8], el resultado debería ser [1, 2, 3, 4, 5, 6, 7, 8].
-        return new int[0];
+    int[] resultado = new int[contador];
+    for (int i = 0; i < contador; i++) {
+        resultado[i] = auxiliar[i];
     }
+
+    return resultado;
+}
 
     // Método que rota un arreglo n posiciones
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
