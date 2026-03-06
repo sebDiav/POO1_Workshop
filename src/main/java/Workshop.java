@@ -199,59 +199,98 @@ public class Workshop {
 
     // Método que rota un arreglo n posiciones
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
-        // TODO: Implementar el método para rotar un arreglo n posiciones.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y posiciones = 2, el resultado debería ser [3, 4, 5, 1, 2].
-        return new int[0];
+        int[] resultado = new int [arreglo.length];
+        int indice= 0;
+     for ( int i=posiciones ; i < arreglo.length; i++){
+      resultado [indice] = arreglo [i];
+      indice ++;
+  
+    } 
+    
+    for (int i = 0; i < posiciones; i++) {
+        resultado[indice] = arreglo[i];
+        indice++;
     }
+
+    return resultado;
+}
 
     // Método que cuenta los caracteres en una cadena
     public int contarCaracteres(String cadena) {
-        // TODO: Implementar el método para contar el número de caracteres en una cadena.
-        // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        return 0;
+        int contador= 0;
+       
+       for ( int i=0; i<cadena.length(); i++){
+        cadena.charAt(i);
+        contador++;
+    }
+     return contador;
     }
 
     // Método que invierte una cadena
     public String invertirCadena(String cadena) {
-        // TODO: Implementar el método para invertir una cadena.
-        // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
-        return "";
-    }
+     String anedac = "";
+     for (int i = cadena.length() - 1; i>=0; i--){
+    anedac = anedac + cadena.charAt(i);
+    
+  }
+ return anedac;
+ }
+        
 
     // Método que verifica si una cadena es un palíndromo
     public boolean esPalindromo(String cadena) {
-        // TODO: Implementar el método para verificar si una cadena es un palíndromo.
-        // Ejemplo: Si cadena = "madam", el resultado debería ser true.
-        return false;
+         String anedac = "";
+     for (int i = cadena.length() - 1; i>=0; i--){
+     anedac = anedac + cadena.charAt(i);
     }
+    if ( anedac.equals(cadena)){
+    return true;
+    }
+     return false;
+  }
+  
 
     // Método que cuenta el número de palabras en una cadena
     public int contarPalabras(String cadena) {
-        // TODO: Implementar el método para contar el número de palabras en una cadena.
-        // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
+         if (cadena.length() == 0) {
         return 0;
     }
+    int palabras = 1;
+    for (int i = 0; i < cadena.length(); i++) {
+        if (cadena.charAt(i) == ' ') {
+            palabras++;
+    }
+    }
+    return palabras;
+}
 
     // Método que convierte una cadena a mayúsculas
     public String convertirAMayusculas(String cadena) {
-        // TODO: Implementar el método para convertir una cadena a mayúsculas.
-        // Ejemplo: Si cadena = "hello", el resultado debería ser "HELLO".
-        return "";
+       String palabra = "";
+      for ( int i=0; i<cadena.length; i++){
+     palabra = palabra + Character.toUpperCase(cadena.charAt(i));
     }
+ return palabra;
+   }
 
     // Método que convierte una cadena a minúsculas
     public String convertirAMinusculas(String cadena) {
-        // TODO: Implementar el método para convertir una cadena a minúsculas.
-        // Ejemplo: Si cadena = "HELLO", el resultado debería ser "hello".
-        return "";
+      String palabra = "";
+      for ( int i=0; i<cadena.length; i++){
+     palabra = palabra + Character.toLowerCase(cadena.charAt(i));
     }
-
+ return palabra;
+   }
     // Método que reemplaza una subcadena en una cadena por otra subcadena
     public String reemplazarSubcadena(String cadena, String antiguaSubcadena, String nuevaSubcadena) {
-        // TODO: Implementar el método para reemplazar una subcadena en una cadena por otra subcadena.
-        // Ejemplo: Si cadena = "Hello Java", antiguaSubcadena = "Java", y nuevaSubcadena = "world", el resultado debería ser "Hello world".
-        return "";
+          int posicion = cadena.indexOf(antiguaSubcadena);
+    if (posicion == -1) {
+        return cadena;
     }
+    String parte1 = cadena.substring(0, posicion);
+    String parte2 = cadena.substring(posicion + antiguaSubcadena.length());
+    return parte1 + nuevaSubcadena + parte2;
+}
 
     // Método que busca una subcadena en una cadena y retorna su índice
     public int buscarSubcadena(String cadena, String subcadena) {
