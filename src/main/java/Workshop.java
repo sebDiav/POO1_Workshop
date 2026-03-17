@@ -292,12 +292,6 @@ public class Workshop {
     return parte1 + nuevaSubcadena + parte2;
 }
 
-    // Método que busca una subcadena en una cadena y retorna su índice
-    public int buscarSubcadena(String cadena, String subcadena) {
-        // TODO: Implementar el método para buscar una subcadena en una cadena y retornar su índice.
-        // Ejemplo: Si cadena = "Hello world" y subcadena = "world", el resultado debería ser 6.
-        return -1;
-    }
 
     // Método que valida un correo electrónico
     public boolean validarCorreoElectronico(String correo) {
@@ -325,64 +319,88 @@ public class Workshop {
 
     // Método que convierte un número en su representación binaria
     public String convertirABinario(int numero) {
-        // TODO: Implementar el método para convertir un número en su representación binaria.
-        // Ejemplo: Si numero = 10, el resultado debería ser "1010".
-        return "";
+      if ( numero == 0){
+        return "0";
+   }
+     String binario= "";
+     
+     while ( numero>0){
+     int residuo= numero % 2;
+     binario = residuo + binario ;
+    numero = numero/2;
+
+    
+    }
+    return binario;
     }
 
     // Método que convierte un número en su representación hexadecimal
     public String convertirAHexadecimal(int numero) {
-        // TODO: Implementar el método para convertir un número en su representación hexadecimal.
-        // Ejemplo: Si numero = 255, el resultado debería ser "FF".
-        return "";
+        if( numero == 0){
+        return "0";
+   }
+      String hex= "";
+     while( numero > 0){
+     int residuo=  numero % 16;
+     
+    if( residuo < 10) {
+    hex = residuo + hex; 
+    }
+    else{
+     char letra = (char) ('A' + ( residuo - 10 ));
+     hex = letra + hex;
+    }
+    numero = numero/16;
+    }
+    return hex; 
     }
 
-    // Método para el juego de piedra, papel, tijera, lagarto, Spock
-    public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
-        // TODO: Implementar el método para el juego de Piedra, Papel, Tijera, Lagarto, Spock.
-        // Las reglas del juego son:
-        // - Piedra vence a Tijera y Lagarto
-        // - Papel vence a Piedra y Spock
-        // - Tijera vence a Papel y Lagarto
-        // - Lagarto vence a Spock y Papel
-        // - Spock vence a Tijera y Piedra
+    //import java.util.Random;
 
+public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
-        // El método debe retornar un mensaje indicando el resultado del juego.
-        // Ejemplo: Si la eleccionUsuario es "Piedra", el resultado podría ser "Ganaste" o "Perdiste" dependiendo de la elección de la computadora.
-        return "";
+    String[] opciones = {"Piedra", "Papel", "Tijera", "Lagarto", "Spock"};
+
+    Random random = new Random();
+    String eleccionPC = opciones[random.nextInt(5)];
+
+    if (eleccionUsuario.equals(eleccionPC)) {
+        return "Empate. Ambos eligieron " + eleccionUsuario;
     }
 
-    public String pptls2(String game[]) {
-        //Retornar player ganador o empate
-            /*
-            Rock = R
-            Paper = P
-            Scissors = S
-            Lizard = L
-            Spock = V
-        Scissors cuts Paper
-Paper covers Rock
-Rock crushes Lizard
-Lizard poisons Spock
-Spock smashes Scissors
-Scissors decapitates Lizard
-Lizard eats Paper
-Paper disproves Spock
-Spock vaporizes Rock
-Rock crushes Scissors
-         */
-        return "";
+    if (
+        (eleccionUsuario.equals("Piedra") && (eleccionPC.equals("Tijera") || eleccionPC.equals("Lagarto"))) ||
+        (eleccionUsuario.equals("Papel") && (eleccionPC.equals("Piedra") || eleccionPC.equals("Spock"))) ||
+        (eleccionUsuario.equals("Tijera") && (eleccionPC.equals("Papel") || eleccionPC.equals("Lagarto"))) ||
+        (eleccionUsuario.equals("Lagarto") && (eleccionPC.equals("Spock") || eleccionPC.equals("Papel"))) ||
+        (eleccionUsuario.equals("Spock") && (eleccionPC.equals("Tijera") || eleccionPC.equals("Piedra")))
+    ) {
+        return "Ganaste. La computadora eligió " + eleccionPC;
     }
+
+    return "Perdiste. La computadora eligió " + eleccionPC;
+}
 
     public double areaCirculo(double radio) {
-        return 0.0;
+     
+        return math.ip*radio*radio;
     }
 
     public String zoodiac(int day, int month) {
-        return "";
-    }
+    if ((day >= 21 && month == 3) || (day <= 19 && month == 4)) return "Aries";
+    if ((day >= 20 && month == 4) || (day <= 20 && month == 5)) return "Tauro";
+    if ((day >= 21 && month == 5) || (day <= 20 && month == 6)) return "Géminis";
+    if ((day >= 21 && month == 6) || (day <= 22 && month == 7)) return "Cáncer";
+    if ((day >= 23 && month == 7) || (day <= 22 && month == 8)) return "Leo";
+    if ((day >= 23 && month == 8) || (day <= 22 && month == 9)) return "Virgo";
+    if ((day >= 23 && month == 9) || (day <= 22 && month == 10)) return "Libra";
+    if ((day >= 23 && month == 10) || (day <= 21 && month == 11)) return "Escorpio";
+    if ((day >= 22 && month == 11) || (day <= 21 && month == 12)) return "Sagitario";
+    if ((day >= 22 && month == 12) || (day <= 19 && month == 1)) return "Capricornio";
+    if ((day >= 20 && month == 1) || (day <= 18 && month == 2)) return "Acuario";
+    if ((day >= 19 && month == 2) || (day <= 20 && month == 3)) return "Piscis";
 
-
+    return "Fecha inválida";
+}
 }
 
