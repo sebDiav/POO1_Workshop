@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.List;
 
 public class Workshop {
@@ -104,6 +105,9 @@ public class Workshop {
 
     // Método que encuentra el elemento mayor en un arreglo
     public int encontrarElementoMayor(int[] arreglo) {
+        if( arreglo.length == 0){
+        return 0;
+   }
         int mayor = arreglo[0];
 
         for ( int i=1; i<arreglo.length; i++){
@@ -118,6 +122,9 @@ public class Workshop {
 
     // Método que encuentra el elemento menor en un arreglo
     public int encontrarElementoMenor(int[] arreglo) {
+          if( arreglo.length == 0){
+        return 0;
+   }
          int menor = arreglo[0];
 
         for ( int i=1; i<arreglo.length; i++){
@@ -199,6 +206,10 @@ public class Workshop {
 
     // Método que rota un arreglo n posiciones
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
+        if (arreglo.length == 0) {
+    return new int[0];
+  }
+        posiciones= posiciones % arreglo.length;
         int[] resultado = new int [arreglo.length];
         int indice= 0;
      for ( int i=posiciones ; i < arreglo.length; i++){
@@ -233,7 +244,7 @@ public class Workshop {
     anedac = anedac + cadena.charAt(i);
     
   }
- return anedac;
+ return cadena.length();
  }
         
 
@@ -243,7 +254,7 @@ public class Workshop {
      for (int i = cadena.length() - 1; i>=0; i--){
      anedac = anedac + cadena.charAt(i);
     }
-    if ( anedac.equals(cadena)){
+    if (anedac.equalsIgnoreCase(cadena)){
     return true;
     }
      return false;
@@ -252,22 +263,16 @@ public class Workshop {
 
     // Método que cuenta el número de palabras en una cadena
     public int contarPalabras(String cadena) {
-         if (cadena.length() == 0) {
-        return 0;
-    }
-    int palabras = 1;
-    for (int i = 0; i < cadena.length(); i++) {
-        if (cadena.charAt(i) == ' ') {
-            palabras++;
-    }
-    }
-    return palabras;
+         if ( cadena == null || cadena.trim().isEmpty()){
+         return 0;
+}
+    return cadena.split(" ").length;
 }
 
     // Método que convierte una cadena a mayúsculas
     public String convertirAMayusculas(String cadena) {
        String palabra = "";
-      for ( int i=0; i<cadena.length; i++){
+      for ( int i=0; i<cadena.length(); i++){
      palabra = palabra + Character.toUpperCase(cadena.charAt(i));
     }
  return palabra;
@@ -276,7 +281,7 @@ public class Workshop {
     // Método que convierte una cadena a minúsculas
     public String convertirAMinusculas(String cadena) {
       String palabra = "";
-      for ( int i=0; i<cadena.length; i++){
+      for ( int i=0; i<cadena.length(); i++){
      palabra = palabra + Character.toLowerCase(cadena.charAt(i));
     }
  return palabra;
@@ -319,19 +324,18 @@ public class Workshop {
 
     // Método que convierte un número en su representación binaria
     public String convertirABinario(int numero) {
-      if ( numero == 0){
-        return "0";
-   }
-     String binario= "";
-     
-     while ( numero>0){
-     int residuo= numero % 2;
-     binario = residuo + binario ;
-    numero = numero/2;
-
+    if ( numero == 0) return "0";
     
+    boolean negativo = numero<0;
+    numero= Math.abs(numero);
+    
+    String binario = "";
+    while ( numero>0){
+     binario = ( numero % 2) + numero;
+     numero/ = 2;
+
     }
-    return binario;
+     return negativo ? "-" + binario : binario;
     }
 
     // Método que convierte un número en su representación hexadecimal
@@ -355,7 +359,7 @@ public class Workshop {
     return hex; 
     }
 
-    //import java.util.Random;
+    
 
 public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
@@ -383,7 +387,7 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
     public double areaCirculo(double radio) {
      
-        return math.ip*radio*radio;
+        return Math.PI*radio;
     }
 
     public String zoodiac(int day, int month) {
@@ -402,5 +406,25 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
     return "Fecha inválida";
 }
+public int[] combinarArreglos(int[] a, int[] b) {
+    int[] resultado = new int[a.length + b.length];
+
+    for (int i = 0; i < a.length; i++) {
+        resultado[i] = a[i];
+    }
+
+    for (int i = 0; i < b.length; i++) {
+        resultado[a.length + i] = b[i];
+    }
+
+    return resultado;
 }
 
+public boolean buscarSubcadena(String texto, String subcadena) {
+    return texto.contains(subcadena);
+}
+
+public int pptls2(String[] arreglo) {
+    return arreglo.length;
+}
+}
