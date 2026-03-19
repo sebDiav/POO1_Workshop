@@ -244,7 +244,7 @@ public class Workshop {
     anedac = anedac + cadena.charAt(i);
     
   }
- return cadena.length();
+ return anedac;
  }
         
 
@@ -266,7 +266,7 @@ public class Workshop {
          if ( cadena == null || cadena.trim().isEmpty()){
          return 0;
 }
-    return cadena.split(" ").length;
+    return cadena.trim().split("\\s+").length;
 }
 
     // Método que convierte una cadena a mayúsculas
@@ -330,13 +330,12 @@ public class Workshop {
     numero= Math.abs(numero);
     
     String binario = "";
-    while ( numero>0){
-     binario = ( numero % 2) + numero;
-     numero/ = 2;
-
-    }
-     return negativo ? "-" + binario : binario;
-    }
+  while (numero > 0) {
+    binario = (numero % 2) + binario;
+    numero /= 2;
+}
+ return negativo ? "-" + binario : binario;
+}
 
     // Método que convierte un número en su representación hexadecimal
     public String convertirAHexadecimal(int numero) {
@@ -387,7 +386,7 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
     public double areaCirculo(double radio) {
      
-        return Math.PI*radio;
+        return Math.PI*radio*radio;
     }
 
     public String zoodiac(int day, int month) {
@@ -403,9 +402,9 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
     if ((day >= 22 && month == 12) || (day <= 19 && month == 1)) return "Capricornio";
     if ((day >= 20 && month == 1) || (day <= 18 && month == 2)) return "Acuario";
     if ((day >= 19 && month == 2) || (day <= 20 && month == 3)) return "Piscis";
-
-    return "Fecha inválida";
+return "Invalid Date";
 }
+
 public int[] combinarArreglos(int[] a, int[] b) {
     int[] resultado = new int[a.length + b.length];
 
