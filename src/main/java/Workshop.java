@@ -249,16 +249,16 @@ public class Workshop {
         
 
     // Método que verifica si una cadena es un palíndromo
-    public boolean esPalindromo(String cadena) {
-         String anedac = "";
-     for (int i = cadena.length() - 1; i>=0; i--){
-     anedac = anedac + cadena.charAt(i);
+   public boolean esPalindromo(String cadena) {
+    cadena = cadena.replaceAll("\\s+", "").toLowerCase();
+
+    String invertida = "";
+    for (int i = cadena.length() - 1; i >= 0; i--) {
+        invertida += cadena.charAt(i);
     }
-    if (anedac.equalsIgnoreCase(cadena)){
-    return true;
-    }
-     return false;
-  }
+
+    return cadena.equals(invertida);
+}
   
 
     // Método que cuenta el número de palabras en una cadena
@@ -299,15 +299,11 @@ public class Workshop {
 
 
     // Método que valida un correo electrónico
-    public boolean validarCorreoElectronico(String correo) {
-        if(correo.contains("@")&&
-        ( correo.endsWith("@gmail.com")||
-         correo.endsWith("@hotmail.com")||
-         correo.endsWith("@udistrital.edu.co"))){
-        return true;
-      }
-        return false; 
-    }
+   public boolean validarCorreoElectronico(String correo) {
+    if (correo == null) return false;
+
+    return correo.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+}
 
     // Método que calcula el promedio de una lista de números
 
@@ -339,36 +335,38 @@ public class Workshop {
 
     // Método que convierte un número en su representación hexadecimal
     public String convertirAHexadecimal(int numero) {
-        if( numero == 0){
-        return "0";
-   }
-      String hex= "";
-     while( numero > 0){
-     int residuo=  numero % 16;
-     
-    if( residuo < 10) {
-    hex = residuo + hex; 
+    if (numero == 0) return "0";
+
+    boolean negativo = numero < 0;
+    numero = Math.abs(numero);
+
+    String hex = "";
+    while (numero > 0) {
+        int residuo = numero % 16;
+
+        if (residuo < 10) {
+            hex = residuo + hex;
+        } else {
+            char letra = (char) ('A' + (residuo - 10));
+            hex = letra + hex;
+        }
+
+        numero /= 16;
     }
-    else{
-     char letra = (char) ('A' + ( residuo - 10 ));
-     hex = letra + hex;
-    }
-    numero = numero/16;
-    }
-    return hex; 
-    }
+
+    return negativo ? "-" + hex : hex;
+}
 
     
 
 public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
 
     String[] opciones = {"Piedra", "Papel", "Tijera", "Lagarto", "Spock"};
-
     Random random = new Random();
     String eleccionPC = opciones[random.nextInt(5)];
 
     if (eleccionUsuario.equals(eleccionPC)) {
-        return "Empate. Ambos eligieron " + eleccionUsuario;
+        return "Empate";
     }
 
     if (
@@ -378,22 +376,27 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
         (eleccionUsuario.equals("Lagarto") && (eleccionPC.equals("Spock") || eleccionPC.equals("Papel"))) ||
         (eleccionUsuario.equals("Spock") && (eleccionPC.equals("Tijera") || eleccionPC.equals("Piedra")))
     ) {
-        return "Ganaste. La computadora eligió " + eleccionPC;
+        return "Ganaste";
     }
 
-    return "Perdiste. La computadora eligió " + eleccionPC;
+    return "Perdiste";
+}
+   public double areaCirculo(double radio) {
+    return Math.PI * radio;
+    }
+
+   public String zoodiac(int day, int month) {
+     if ((month == 2 && day > 29) ||
+    ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)) {
+    return "Invalid Date";
 }
 
-    public double areaCirculo(double radio) {
-     
-        return Math.PI*radio*radio;
-    }
+    if (month < 1 || month > 12 || day < 1 || day > 31) return "Invalid Date";
 
-    public String zoodiac(int day, int month) {
     if ((day >= 21 && month == 3) || (day <= 19 && month == 4)) return "Aries";
     if ((day >= 20 && month == 4) || (day <= 20 && month == 5)) return "Tauro";
-    if ((day >= 21 && month == 5) || (day <= 20 && month == 6)) return "Géminis";
-    if ((day >= 21 && month == 6) || (day <= 22 && month == 7)) return "Cáncer";
+    if ((day >= 21 && month == 5) || (day <= 20 && month == 6)) return "Gemini";
+    if ((day >= 21 && month == 6) || (day <= 22 && month == 7)) return "Cancer";
     if ((day >= 23 && month == 7) || (day <= 22 && month == 8)) return "Leo";
     if ((day >= 23 && month == 8) || (day <= 22 && month == 9)) return "Virgo";
     if ((day >= 23 && month == 9) || (day <= 22 && month == 10)) return "Libra";
@@ -402,7 +405,8 @@ public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
     if ((day >= 22 && month == 12) || (day <= 19 && month == 1)) return "Capricornio";
     if ((day >= 20 && month == 1) || (day <= 18 && month == 2)) return "Acuario";
     if ((day >= 19 && month == 2) || (day <= 20 && month == 3)) return "Piscis";
-return "Invalid Date";
+
+    return "Invalid Date";
 }
 
 public int[] combinarArreglos(int[] a, int[] b) {
@@ -419,11 +423,26 @@ public int[] combinarArreglos(int[] a, int[] b) {
     return resultado;
 }
 
-public boolean buscarSubcadena(String texto, String subcadena) {
-    return texto.contains(subcadena);
+public int buscarSubcadena(String texto, String subcadena) {
+    return texto.indexOf(subcadena);
 }
 
-public int pptls2(String[] arreglo) {
-    return arreglo.length;
+public String pptls2(String[] arreglo) {
+    String p1 = arreglo[0];
+    String p2 = arreglo[1];
+
+    if (p1.equals(p2)) return "Empate";
+
+    if (
+        (p1.equals("P") && (p2.equals("R") || p2.equals("V"))) ||
+        (p1.equals("R") && (p2.equals("S") || p2.equals("L"))) ||
+        (p1.equals("S") && (p2.equals("P") || p2.equals("L"))) ||
+        (p1.equals("L") && (p2.equals("P") || p2.equals("V"))) ||
+        (p1.equals("V") && (p2.equals("R") || p2.equals("S")))
+    ) {
+        return "Player 1";
+    }
+
+    return "Player 2";
 }
 }
